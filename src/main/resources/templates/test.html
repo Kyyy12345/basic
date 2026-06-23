@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>스프링 부트 시험</title>
+</head>
+<body>
+    <h1>스프링 부트 실전 테스트</h1>
+    <form action="/testLabel" method="post">
+        <div>
+            <p>1. 객체를 수동으로 직접 등록할 때 사용하는 어노테이션은?</p>
+            <input type="radio" name="q1" value="1">① @Component<br>
+            <input type="radio" name="q1" value="2">② @Bean<br>
+            <input type="radio" name="q1" value="3">③ @Controller<br>
+            <input type="radio" name="q1" value="4">④ @Autowired
+        </div>
+        
+        <div>
+            <p>2. 가장 권장되는 의존성 주입 방식은?</p>
+            <input type="radio" name="q2" value="1">① 필드 주입<br>
+            <input type="radio" name="q2" value="2">② 세터 주입<br>
+            <input type="radio" name="q2" value="3">③ 생성자 주입<br>
+            <input type="radio" name="q2" value="4">④ 메서드 주입
+        </div>
+
+        <div>
+            <p>3. 자동 빈 등록 기능의 명칭은?</p>
+            <input type="radio" name="q3" value="1">① Component Scanning<br>
+            <input type="radio" name="q3" value="2">② Bean Registration<br>
+            <input type="radio" name="q3" value="3">③ Dependency Injection<br>
+            <input type="radio" name="q3" value="4">④ Auto Configuration
+        </div>
+        <br>
+        <button type="submit">제출하기</button>
+    </form>
+</body>
+</html>
