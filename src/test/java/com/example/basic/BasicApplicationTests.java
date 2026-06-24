@@ -3,14 +3,19 @@ package com.example.basic;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.example.basic.entity.Emp;
 import com.example.basic.entity.ServiceCenter;
+import com.example.basic.entity.Titanic;
+import com.example.basic.repository.EmpRepository;
 import com.example.basic.repository.ServiceCenterRepository;
+import com.example.basic.repository.TitanicRepository;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -18,6 +23,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 class BasicApplicationTests {
 	@Autowired ServiceCenterRepository scr;
+	@Autowired EmpRepository er;
+	@Autowired TitanicRepository tr;
 
 	@Test
 	void 수정() {
@@ -59,6 +66,25 @@ class BasicApplicationTests {
 		sc.setPurDate(LocalDateTime.now());
 		sc.setVstDate(new Date());
 		scr.save(sc);
+	}
+
+	@Test
+	void 입사일자로조회() {
+		Emp emp = er.findByEname("SCOTT");
+		log.info(emp.toString());
+	}
+
+	// 급여가 3000이상인 사람들을 급여가 높은순으로 조회하기
+	// @Test
+	// void 급여로조회() {
+	// 	List<Emp> list = er.findBySalGreaterThanEqualAndOrderBySalDesc(3000);
+	// 	log.info(list.toString());
+	// }
+		
+	@Test
+	void 생존자로조회() {
+		List<Titanic> titanicList = tr.findBySurvivedOrderByAgeDesc(1);
+		log.info(titanicList.toString());
 	}
 
 }
