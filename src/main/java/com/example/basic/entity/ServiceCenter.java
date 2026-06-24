@@ -1,0 +1,25 @@
+package com.example.basic.entity;
+
+import java.time.LocalDateTime;
+import java.util.Date;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.Data;
+
+@Data
+@Entity
+public class ServiceCenter {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Integer id;
+
+    String customer;
+
+    String prdName;
+
+    LocalDateTime purDate;
+    Date vstDate;
+}

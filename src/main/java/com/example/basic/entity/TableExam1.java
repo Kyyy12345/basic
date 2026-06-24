@@ -1,4 +1,4 @@
-package com.example.basic;
+package com.example.basic.entity;
 
 import java.util.Date;
 

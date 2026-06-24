@@ -10,9 +10,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.example.basic.TestForm;
 import com.example.basic.component.Game;
 import com.example.basic.component.Music;
+import com.example.basic.entity.Dept;
+import com.example.basic.entity.Emp;
+import com.example.basic.model.TestForm;
+import com.example.basic.repository.DeptRepository;
+import com.example.basic.repository.EmpRepository;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,6 +32,8 @@ public class HomeController {
     @Autowired String s;
     @Autowired Game game;
     @Autowired Music m;
+    @Autowired DeptRepository dr;
+    @Autowired EmpRepository er;
 
 
     @GetMapping("/")
@@ -51,6 +57,13 @@ public class HomeController {
 
     @GetMapping("/test")
     public String test() {
+        Dept d = new Dept();
+        d.setDeptno(1);
+        d.setDname("A");
+        d.setLoc("부산");
+        dr.save(d);
+        List<Dept> list = dr.findAll(); // select SQL 생성 및 실행
+        System.out.println(list);
         return "test";
     }
 
@@ -58,6 +71,13 @@ public class HomeController {
     public String submitTest(@ModelAttribute TestForm testForm) {
         System.out.println("제출 답안: " + testForm.toString());
         return "testLabel";
+    }
+
+    @GetMapping("/emp-all")
+    @ResponseBody
+    public List<Emp> empAll() {
+        List<Emp> empList = er.findAll();
+        return empList;
     }
     
     

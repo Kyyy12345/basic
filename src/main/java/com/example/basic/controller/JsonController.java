@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.basic.ExamResponse;
-import com.example.basic.User;
+import com.example.basic.model.User;
 
 @RestController
 public class JsonController {

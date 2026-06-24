@@ -2,6 +2,8 @@ package com.example.basic;
 
 import java.util.List;
 
+import com.example.basic.model.User;
+
 import lombok.Data;
 
 @Data
