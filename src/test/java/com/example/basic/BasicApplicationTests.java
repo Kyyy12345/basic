@@ -3,6 +3,7 @@ package com.example.basic;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,22 @@ class BasicApplicationTests {
 		sc.setId(1); // <== 이것 덕분에 수정으로 동작
 		sc.setCustomer("김길동");
 		scr.save(sc);
+	}
+
+	@Test
+	void 삭제() {
+		scr.deleteById(1);
+	}
+
+	@Test
+	void 조회후수정() {
+		
+		
+		Optional<ServiceCenter> opt = scr.findById(2);
+		ServiceCenter sc = opt.get();
+		sc.setCustomer("박길동");
+		scr.save(sc);
+		
 	}
 
 	@Test
