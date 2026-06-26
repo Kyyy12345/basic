@@ -2,10 +2,16 @@ package com.example.basic.controller;
 
 import java.util.Map;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -133,6 +139,18 @@ public class HomeController {
         }
 
         return result;
+    }
+
+    @GetMapping("/download")
+    public ResponseEntity<Resource> download() throws Exception {
+        File file = new File("c:/pjh.jfif");
+        InputStreamResource resource = new InputStreamResource(new FileInputStream(file));
+        return ResponseEntity.ok()
+                .header("content-disposition",
+                        "filename=" + URLEncoder.encode(file.getName(), "utf-8"))
+                .contentLength(file.length())
+                .contentType(MediaType.parseMediaType("application/octet-stream"))
+                .body(resource);
     }
 
 }
