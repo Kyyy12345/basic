@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <table border="1">
+        <tr>
+            <td>아이디</td>
+            <td>이름</td>
+            <td>나이</td>
+        </tr>
+        <tr th:each="user : ${userList}">
+            <td th:text="${user.userId}"></td>
+            <td th:text="${user.userName}"></td>
+            <td th:text="${user.userAge}"></td>
+        </tr>
+    </table>
+    <hr>
+    <th:block th:each="pageNumber : ${#numbers.sequence(1, 10)}">
+        <span th:if="${pageNumber} == ${page}" th:text="${pageNumber}" style="color: aqua;"></span>
+        <span th:if="${pageNumber} != ${page}" th:text="${pageNumber}"></span>
+    </th:block>
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <td>아이디</td>
+            <td>시도</td>
+            <td>구군</td>
+            <td>기관명</td>
+            <td>담당자</td>
+            <td>연락처</td>
+            <td>주소</td>
+        </tr>
+        <tr th:each="holidayParking : ${holidayParkingList}">
+            <td th:text="${holidayParking.id}"></td>
+            <td th:text="${holidayParking.sido}"></td>
+            <td th:text="${holidayParking.gu}"></td>
+            <td th:text="${holidayParking.institution}"></td>
+            <td th:text="${holidayParking.manager}"></td>
+            <td th:text="${holidayParking.tel}"></td>
+            <td th:text="${holidayParking.address}"></td>
+            
+        </tr>
+    </table>
+    <div>
+        <!-- 이전 그룹: 현재 그룹 첫 페이지가 1보다 크면 표시 -->
+        <span th:if="${startPage > 1}">
+            <a th:href="@{/holidayParking(page=${startPage - 1})}">이전</a>
+        </span>
+        <!-- 현재 그룹의 페이지 번호만 표시 (startPage ~ endPage) -->
+        <th:block th:each="pageNumber : ${#numbers.sequence(startPage, endPage)}">
+            <span th:style="${currentPage == pageNumber} ? 'color:red; font-weight:bold;' : ''">
+                <a th:href="@{/holidayParking(page=${pageNumber})}" th:text="${pageNumber}"></a>
+            </span>
+        </th:block>
+        <!-- 다음 그룹: 현재 그룹 마지막 페이지가 totalPages보다 작으면 표시 -->
+        <span th:if="${endPage < totalPages}">
+            <a th:href="@{/holidayParking(page=${endPage + 1})}">다음</a>
+        </span>
+    </div>
+</body>
+</html>
